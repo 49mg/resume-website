@@ -6,28 +6,33 @@
     <title>MG Dhia - Data Scientist & AI Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
     <style>
         :root {
             --gold: #c9a227;
             --black: #0d0d0d;
             --gray: #1e1e1e;
         }
+
         body {
             background-color: var(--black);
             color: white;
             font-family: 'Poppins', sans-serif;
         }
+
         .section-title {
             border-bottom: 4px solid var(--gold);
             display: inline-block;
             padding-bottom: 5px;
             font-size: 1.8rem;
+            margin-bottom: 20px;
         }
+
         .gold-text {
             color: var(--gold);
             font-weight: bold;
         }
+
         .card {
             background: rgba(255, 255, 255, 0.1);
             padding: 1.5rem;
@@ -36,19 +41,23 @@
             text-align: center;
             font-size: 1.1rem;
         }
+
         .card:hover {
             transform: scale(1.07);
             box-shadow: 0 0 20px var(--gold);
         }
+
         .hero {
             text-align: center;
             padding: 100px 20px;
         }
+
         .hero h1 {
             font-size: 3rem;
             font-weight: bold;
             color: var(--gold);
         }
+
         .hero p {
             font-size: 1.5rem;
             margin-top: 10px;
@@ -58,114 +67,285 @@
 </head>
 <body>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>MG Dhia</h1>
-        <p>Data Scientist | AI Engineer | Mobile Developer</p>
-    </section>
+<!-- Hero Section -->
+<section class="hero">
+    <h1>MG Dhia</h1>
+    <p>Data Scientist | AI Engineer | Mobile Developer</p>
+</section>
 
-    <!-- About Me Section -->
-    <section id="about" class="container mx-auto py-12 px-6" data-aos="fade-up">
-        <h2 class="section-title">About Me</h2>
-        <p>
-            I am a highly skilled Data Scientist, AI Engineer, and Mobile Developer with expertise in 
-            machine learning, deep learning, and mobile application development. 
-            My work focuses on computer vision, natural language processing (NLP), predictive analytics, 
-            and AI-driven automation, along with Flutter and Jetpack Compose for 
-            developing high-performance mobile applications.
-        </p>
-        <br>
-        <p>
-            I am passionate about building intelligent, scalable systems that seamlessly integrate AI 
-            with mobile technology, driving innovation and enhancing real-world applications.
-        </p>
-    </section>
-
-
-    <!-- Experience -->
-    <section id="experience" class="container mx-auto py-12 px-6" data-aos="fade-up">
-        <h2 class="section-title">Experience</h2>
-
-        <!-- Data Science & AI Experience -->
-        <h3 class="mt-6">Data Science & AI Experience</h3>
-
-        <div class="card">
-            <strong>Senior AI Engineer – See Sharp Company.</strong> <br> (January 2022 – Present)
-            <ul class="list-disc pl-5 space-y-2 text-left mt-2">
-                <li>Developed AI models for **video analysis, anomaly detection, and computer vision applications**.</li>
-                <li>Worked on **predictive analytics and NLP-based models** to optimize business intelligence.</li>
-                <li>Integrated **AI with blockchain and encryption** for **secure data processing & file transfers**.</li>
-            </ul>
-        </div>
-
-        <div class="card mt-4">
-            <strong>Machine Learning Engineer – See Sharp Company.</strong> <br> (July 2019 – December 2021)
-            <ul class="list-disc pl-5 space-y-2 text-left mt-2">
-                <li>Designed and deployed **ML models for predictive analytics & fraud detection**.</li>
-                <li>Conducted **data preprocessing, feature engineering, and hyperparameter tuning**.</li>
-                <li>Developed **NLP-powered chatbot solutions** to automate customer interactions.</li>
-            </ul>
-        </div>
-
-        <!-- Mobile Development Experience -->
-        <h3 class="mt-6">Mobile Development Experience</h3>
-
-        <div class="card">
-            <strong>Lead Mobile Developer – Innovate Mobile</strong> <br> (March 2020 – Present)
-            <ul class="list-disc pl-5 space-y-2 text-left mt-2">
-                <li>Developed **cross-platform mobile applications** using **Flutter & Jetpack Compose**.</li>
-                <li>Built an **AI-powered chatbot for Android**, improving user interactions with NLP.</li>
-                <li>Implemented **secure authentication systems** using **face recognition & encryption**.</li>
-                <li>Designed **data-driven mobile apps** for business management, fitness tracking, and task automation.</li>
-            </ul>
-        </div>
-    </section>
+<!-- About Me Section -->
+<section id="about" class="container mx-auto py-12 px-6" data-aos="fade-up">
+    <h2 class="section-title">About Me</h2>
+    <p>
+        I am a highly skilled Data Scientist, AI Engineer, and Mobile Developer with expertise in
+        machine learning, deep learning, and mobile application development.
+        My work focuses on computer vision, natural language processing (NLP), predictive analytics,
+        and AI-driven automation, along with Flutter and Jetpack Compose for
+        developing high-performance mobile applications.
+    </p>
+    <br>
+    <p>
+        I am passionate about building intelligent, scalable systems that seamlessly integrate AI
+        with mobile technology, driving innovation and enhancing real-world applications.
+    </p>
+</section>
 
 
-    <!-- Projects -->
-    <section id="projects" class="container mx-auto py-12 px-6" data-aos="fade-up">
-        <h2 class="section-title">Projects</h2>
+<!-- Experience -->
+<section id="experience" class="container mx-auto py-12 px-6" data-aos="fade-up">
+    <h2 class="section-title">Experience</h2>
 
-        <h3 class="gold-text mt-6">Data Science & AI Projects</h3>
-        <div class="grid md:grid-cols-2 gap-6 mt-4">
-            <div class="card"><strong>Violence Detection in Videos</strong><br>Developed a **CNN & ResNet50-based system** to classify video frames.</div>
-            <div class="card"><strong>SDN Traffic Anomaly Detection</strong><br>AI model for detecting **Miss & Elephant traffic anomalies** in SDN networks.</div>
-            <div class="card"><strong>Face Recognition & Detection</strong><br>Implemented a **real-time CNN-based facial recognition system**.</div>
-            <div class="card"><strong>Encrypted File Transfer with Blockchain</strong><br>Created a **secure file transfer system** integrating **ChaCha20 encryption**.</div>
-        </div>
+    <!-- Data Science & AI Experience -->
+    <h3 class="mt-6">Data Science & AI Experience</h3>
 
-        <h3 class="gold-text mt-6">Mobile Development Projects</h3>
-        <div class="grid md:grid-cols-2 gap-6 mt-4">
-            <div class="card"><strong>AI-Powered Chatbot</strong><br>Built an **NLP chatbot for Android** with transformer-based models.</div>
-            <div class="card"><strong>Secure Face Recognition App</strong><br>Developed an **AI-based face authentication system** for mobile.</div>
-            <div class="card"><strong>Task Management App</strong><br>Designed a **task management system** using Jetpack Compose.</div>
-            <div class="card"><strong>Gem Fitness App</strong><br>Built a **Flutter-based fitness tracking app**.</div>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="container mx-auto py-12 px-6" data-aos="fade-up">
-        <h2 class="section-title">Skills</h2>
-        <ul class="list-disc pl-5 space-y-2">
-            <li><span class="gold-text">Programming:</span> Python, Kotlin, Dart</li>
-            <li><span class="gold-text">Data Science:</span> Machine Learning, Deep Learning, NLP</li>
-            <li><span class="gold-text">Mobile Development:</span> Flutter, Android, Jetpack Compose</li>
-            <li><span class="gold-text">Frameworks:</span> TensorFlow, Keras, PyTorch</li>
-            <li><span class="gold-text">Tools:</span> OpenCV, EasyOCR, Pandas</li>
-            <li><span class="gold-text">Databases:</span> PostgreSQL, Firebase, MongoDB</li>
+    <div class="card">
+        <strong>Senior AI Engineer – See Sharp Company.</strong> <br> (January 2025 – Present)
+        <ul class="list-disc pl-5 space-y-2 text-left mt-2">
+            <li>Lead the development of **cutting-edge AI models** for **video analytics, anomaly detection, and
+                advanced computer vision applications**.
+            </li>
+            <li>Implemented **predictive analytics and NLP-driven AI models**, enhancing business intelligence and
+                automation capabilities.
+            </li>
+            <li>Integrated **AI with blockchain and encryption** to enhance **secure data processing, file transfers,
+                and AI-driven authentication systems**.
+            </li>
+            <li>Optimized **deep learning architectures** for real-time video analysis and improved model efficiency.
+            </li>
         </ul>
-    </section>
+    </div>
 
-    <!-- Contact -->
-    <section id="contact" class="container mx-auto py-12 px-6" data-aos="fade-up">
-        <h2 class="section-title">Contact</h2>
-        <p>📧 mgdhia49@gmail.com</p>
-        <p>📞 (+964) 7727327752</p>
-        <p>🔗 <a href="https://www.linkedin.com/in/mg-dhia/" target="_blank" class="gold-text">LinkedIn Profile</a></p>
-    </section>
+    <div class="card mt-4">
+        <strong>Machine Learning Engineer – See Sharp Company.</strong> <br> (January 2024 – Present)
+        <ul class="list-disc pl-5 space-y-2 text-left mt-2">
+            <li>Designed, trained, and deployed **machine learning models** for **fraud detection, predictive analytics,
+                and anomaly detection**.
+            </li>
+            <li>Performed **data preprocessing, feature engineering, and hyperparameter tuning**, improving model
+                accuracy and efficiency.
+            </li>
+            <li>Developed and deployed **NLP-based chatbot solutions**, automating customer support and enhancing user
+                interactions.
+            </li>
+            <li>Collaborated with cross-functional teams to integrate AI-driven insights into business decision-making
+                processes.
+            </li>
+        </ul>
+    </div>
 
-    <script>
-        AOS.init({ duration: 1000 });
-    </script>
+    <div class="card mt-4">
+        <strong>Freelance Data Scientist & AI Engineer</strong> <br> (2024 – Present)
+        <ul class="list-disc pl-5 space-y-2 text-left mt-2">
+            <li>Developed **custom AI solutions** for clients in **computer vision, NLP, and predictive analytics**.
+            </li>
+            <li>Implemented **deep learning models for image classification, object detection, and fraud detection**.
+            </li>
+            <li>Designed and optimized **chatbots and virtual assistants** using **transformer-based NLP models**.</li>
+            <li>Provided **AI consulting** for startups, focusing on **scalable AI architectures and cloud
+                deployments**.
+            </li>
+            <li>Developed **automated data pipelines and dashboards** to improve **business intelligence** for
+                clients.
+            </li>
+        </ul>
+    </div>
+
+    <!-- Mobile Development Experience -->
+    <h3 class="mt-6">Mobile Development Experience</h3>
+
+    <div class="card">
+        <strong>Lead Mobile Developer – See Sharp Company</strong> <br> (February 2023 – Present)
+        <ul class="list-disc pl-5 space-y-2 text-left mt-2">
+            <li>Developed and launched **scalable, high-performance cross-platform mobile applications** using **Flutter
+                & Jetpack Compose**.
+            </li>
+            <li>Built and integrated **AI-powered chatbots** into mobile applications, utilizing **NLP and
+                transformer-based models**.
+            </li>
+            <li>Implemented **secure authentication systems** leveraging **face recognition, biometric security, and
+                advanced encryption**.
+            </li>
+            <li>Lead the design and development of **data-driven mobile applications** for business automation, fitness
+                tracking, and AI-enhanced task management.
+            </li>
+            <li>Optimized **mobile app UI/UX** for seamless user experiences and enhanced performance.</li>
+        </ul>
+    </div>
+
+    <div class="card mt-4">
+        <strong>Freelance Mobile Developer</strong> <br> (2021 – Present)
+        <ul class="list-disc pl-5 space-y-2 text-left mt-2">
+            <li>Developed **custom mobile applications** for clients in **e-commerce, healthcare, and finance**.</li>
+            <li>Designed and implemented **Flutter-based cross-platform apps** with **real-time data
+                synchronization**.
+            </li>
+            <li>Integrated **AI-powered features** like **speech recognition, facial authentication, and recommendation
+                systems**.
+            </li>
+            <li>Optimized **mobile app performance and UI/UX design** for a seamless user experience.</li>
+            <li>Collaborated with clients to define **scalable mobile architectures and cloud integrations**.</li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- Projects -->
+<section id="projects" class="container mx-auto py-12 px-6" data-aos="fade-up">
+    <h2 class="section-title">Projects</h2>
+
+    <h3 class="gold-text mt-6">Data Science & AI Projects</h3>
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+        <div class="card"><strong>Violence Detection in Videos</strong><br>Developed a **CNN & ResNet50-based system**
+            to classify video frames.
+        </div>
+        <div class="card"><strong>SDN Traffic Anomaly Detection</strong><br>AI model for detecting **Miss & Elephant
+            traffic anomalies** in SDN networks.
+        </div>
+        <div class="card"><strong>Face Recognition & Detection</strong><br>Implemented a **real-time CNN-based facial
+            recognition system**.
+        </div>
+        <div class="card"><strong>Encrypted File Transfer with Blockchain</strong><br>Created a **secure file transfer
+            system** integrating **ChaCha20 encryption**.
+        </div>
+        <div class="card"><strong>Medical Image Classification</strong><br>Built a **deep learning model** for
+            diagnosing diseases from X-ray and MRI scans.
+        </div>
+        <div class="card"><strong>Object Detection System</strong><br>Developed a **YOLO-based object detection model**
+            for real-time applications.
+        </div>
+        <div class="card"><strong>Autonomous Vehicle AI</strong><br>Designed an **AI-driven system for self-driving
+            cars** using reinforcement learning.
+        </div>
+        <div class="card"><strong>Stock Price Prediction</strong><br>Created an **LSTM-based neural network** for
+            forecasting stock market trends.
+        </div>
+        <div class="card"><strong>Speech-to-Text AI</strong><br>Built a **transformer-based speech recognition model**
+            for real-time applications.
+        </div>
+        <div class="card"><strong>Text Summarization AI</strong><br>Implemented an **AI-powered NLP model** to summarize
+            long articles and reports.
+        </div>
+        <div class="card"><strong>Fake News Detection</strong><br>Developed an **AI model to detect misinformation**
+            using NLP techniques.
+        </div>
+        <div class="card"><strong>Fraud Detection System</strong><br>Trained a **machine learning model** to identify
+            fraudulent transactions.
+        </div>
+        <div class="card"><strong>Handwritten Digit Recognition</strong><br>Implemented a **CNN-based model** for
+            recognizing handwritten numbers.
+        </div>
+        <div class="card"><strong>Recommender System</strong><br>Built a **collaborative filtering-based recommendation
+            engine**.
+        </div>
+        <div class="card"><strong>AI-Powered Resume Screener</strong><br>Developed an **NLP-based model** to analyze
+            resumes and match them to job descriptions.
+        </div>
+    </div>
+
+    <h3 class="gold-text mt-6">Mobile Development Projects</h3>
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+        <div class="card"><strong>AI-Powered Chatbot</strong><br>Built an **NLP chatbot for Android** with
+            transformer-based models.
+        </div>
+        <div class="card"><strong>Secure Face Recognition App</strong><br>Developed an **AI-based face authentication
+            system** for mobile.
+        </div>
+        <div class="card"><strong>Task Management App</strong><br>Designed a **task management system** using Jetpack
+            Compose.
+        </div>
+        <div class="card"><strong>Gem Fitness App</strong><br>Built a **Flutter-based fitness tracking app**.</div>
+        <div class="card"><strong>E-Commerce Mobile App</strong><br>Developed a **full-stack Flutter app** with secure
+            payment integration.
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section id="skills" class="container mx-auto py-12 px-6" data-aos="fade-up">
+    <h2 class="section-title">Skills</h2>
+    <ul class="list-disc pl-5 space-y-2">
+        <li><span class="gold-text">Programming:</span> Python, Java, Kotlin, Dart, C++, C#, C, R, Ruby,</li>
+        <li><span class="gold-text">Data Science:</span> Machine Learning, Deep Learning, NLP, Computer Vision, Time
+            Series Analysis, Reinforcement Learning
+        </li>
+        <li><span class="gold-text">Mobile Development:</span> Flutter, Android, Jetpack Compose
+        </li>
+        <li><span class="gold-text">Frameworks & Libraries:</span> TensorFlow, Keras, PyTorch, Scikit-Learn, FastAPI, Django
+        </li>
+        <li><span class="gold-text">AI & ML Tools:</span> OpenCV, EasyOCR, Hugging Face Transformers, XGBoost, LightGBM
+        </li>
+        <li><span class="gold-text">Databases:</span> PostgreSQL, Firebase, MongoDB, MySQL, SQLite</li>
+
+        <!-- <li><span class="gold-text">Cloud & DevOps:</span> AWS (S3, EC2, Lambda), Google Cloud, Docker, Kubernetes,
+            CI/CD Pipelines
+        </li> -->
+
+        <li><span class="gold-text">Version Control:</span> Git, GitHub, GitLab</li>
+
+        <li><span class="gold-text">Blockchain & Security:</span> Smart Contracts (Solidity), ChaCha20 Encryption,
+            Secure Authentication
+        </li>
+
+    </ul>
+</section>
+
+<!-- Certifications -->
+<section id="certifications" class="container mx-auto py-12 px-6" data-aos="fade-up">
+    <h2 class="section-title">Certifications</h2>
+    <ul class="list-disc pl-5 space-y-2">
+        <li><span class="gold-text">Deep Learning: Model Optimization and Tuning</span> - LinkedIn (<a
+                href="https://www.linkedin.com/learning/certificates/7dbb5a1f6ac4c911585f53b0614320d78649e7fa713fbfbb7b1702dedc3498d0" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <li><span class="gold-text">Machine Learning with Python: Foundations</span> - LinkedIn (<a
+                href="https://www.linkedin.com/learning/certificates/e2bbba9fc7604fe4e1f03ba1ec238e643b3f36a4aeb4b06a32e8375eabee34b4" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <li><span class="gold-text">Artificial Intelligence Foundations: Machine Learning</span> - LinkedIn (<a
+                href="https://www.linkedin.com/learning/certificates/c90c8d0c84524bc0e4310122c0864f6e13fc6232dd3f8f19f9046f5aca5d553d" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <li><span class="gold-text">Artificial Intelligence Foundations: Thinking Machines</span> - LinkedIn (<a
+                href="https://www.linkedin.com/learning/certificates/0f4c339ab0693678467a10b5e3e1bd7f63396af7dfaf234329c48ff8391fa034/" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <li><span class="gold-text">Deep Learning: Getting Started</span> - LinkedIn (<a
+                href="https://www.linkedin.com/learning/certificates/b58a83f68f4fb41a1f3836e871679b224b79435be247c57102c6b89ce9f7a9d6" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <!-- LinkedIn Certifications -->
+        <li><span class="gold-text">Intermediate Machine learning Course</span> - Kaggle (<a
+                href="https://www.kaggle.com/learn/certification/mgdhia/intermediate-machine-learning" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <li><span class="gold-text">Intro to Machine Learning</span> - Kaggle (<a
+                href="https://www.kaggle.com/learn/certification/mgdhia/intro-to-machine-learning" target="_blank"
+                class="hover:underline">View Certificate</a>)
+        </li>
+        <li><span class="gold-text">Digitalize Career Accelerator Bootcamp</span> - Computiq - كومبيوتك (<a
+                href="" target="_blank"
+                class="hover:underline">View Certificate</a>)
+    </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="container mx-auto py-12 px-6 text-left" data-aos="fade-up">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="mt-6 space-y-4">
+        <p class="text-lg">📧 <span class="gold-text">Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mgdhia49@gmail.com"
+                                                                      class="hover:underline">mgdhia49@gmail.com</a></p>
+        <!--
+        <p class="text-lg">📞 <span class="gold-text">Phone:</span> <a href="tel:+9647727327752" class="hover:underline">(+964)
+            7727327752</a></p>
+        -->
+        <p class="text-lg">🔗 <span class="gold-text">LinkedIn:</span> <a href="https://www.linkedin.com/in/mg-dhia/"
+                                                                         target="_blank" class="hover:underline">Connect
+            with me</a></p>
+    </div>
+</section>
+
+<script>
+    AOS.init({duration: 1000});
+</script>
 </body>
 </html>
