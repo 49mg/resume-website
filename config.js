@@ -11,7 +11,7 @@ let portfolioConfig = {
         email: "mgdhia49@gmail.com",
         phone: "+964 7727327752",
         location: "IQ, Baghdad",
-        resumeLink: "https://49mg.github.io/resume-website/",
+        resumeLink: "resume.pdf",
         welcomeText: "👋 Welcome to my portfolio",
         profileImage: "https://avatars.githubusercontent.com/u/95950048?v=4"
     },
@@ -19,8 +19,8 @@ let portfolioConfig = {
     // Social Media Links
     socialMedia: {
         github: "https://github.com/49mg",
-        linkedin: "https://linkedin.com/in/mgdhia",
-        twitter: "https://twitter.com/yourusername",
+        linkedin: "https://www.linkedin.com/in/mg-dhia/",
+        twitter: "#",
         instagram: "https://instagram.com/49mg"
     },
 
