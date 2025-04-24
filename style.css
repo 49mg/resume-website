@@ -1,0 +1,55 @@
+:root {
+    --gold: #c9a227;
+    --black: #0d0d0d;
+    --gray: #1e1e1e;
+}
+
+body {
+    background-color: var(--black);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.section-title {
+    border-bottom: 4px solid var(--gold);
+    display: inline-block;
+    padding-bottom: 5px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.gold-text {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 20px var(--gold);
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    opacity: 0.9;
+}

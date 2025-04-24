@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!-- 
+  Developer Portfolio Template
+  This template can be easily customized to create your personal portfolio.
+  Look for comments labeled with "CUSTOMIZE:" to find areas you should edit.
+  
+  HOW TO USE:
+  1. Edit the config.js file to customize your portfolio
+  2. Deploy to GitHub Pages or your preferred hosting
+-->
+<html lang="en" class="light scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- Load configuration file -->
+    <script src="config.js"></script>
+    <style>
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Fix the tech carousel to prevent horizontal scrolling */
+        .tech-carousel {
+            max-width: 100% !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+        
+        /* Allow animation but prevent overflow */
+        .tech-track {
+            animation: tech-scroll 40s linear infinite !important;
+            max-width: none !important; /* Allow animation to work */
+            display: flex !important;
+            width: fit-content !important;
+        }
+        
+        /* Define the animation inline to ensure it works */
+        @keyframes tech-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 15px)); }
+        }
+        
+        /* Make blur elements not cause overflow */
+        .blur-3xl {
+            max-width: 30%;
+            max-height: 30%;
+        }
+        
+        /* Fix absolute positioned elements */
+        .absolute {
+            max-width: 100%;
+        }
+        
+        /* Hero section responsive fixes */
+        @media (max-width: 768px) {
+            #hero img {
+                max-width: 200px;
+                max-height: 200px;
+            }
+        }
+        
+        /* Mobile menu backdrop fix */
+        .backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .backdrop.active {
+            opacity: 1;
+            display: block;
+        }
+        
+        .mobile-menu {
+            z-index: 1001;
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+    <script>
+        // Use configuration for Tailwind
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Load colors from config
+                        primary: portfolioConfig.colors.primary,
+                        secondary: portfolioConfig.colors.secondary
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s ease infinite',
+                        'float': 'float 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    },
+                }
+            }
+        }
+        
+        // Inline mobile menu handler to prevent issues
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('mobileMenuToggle');
+            const close = document.getElementById('mobileMenuClose');
+            const menu = document.getElementById('mobileMenu');
+            const backdrop = document.getElementById('mobileMenuBackdrop');
+            const links = document.querySelectorAll('.mobile-link');
+            const menuIconOpen = document.querySelector('.menu-icon-open');
+            const menuIconClose = document.querySelector('.menu-icon-close');
+            let menuOpen = false;
+            
+            function openMenu() {
+                if (menuOpen) return;
+                menuOpen = true;
+                
+                // Show close icon, hide hamburger
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+                
+                backdrop.classList.remove('hidden');
+                setTimeout(() => {
+                    menu.classList.remove('translate-x-full');
+                    document.body.classList.add('overflow-hidden');
+                }, 10);
+            }
+            
+            function closeMenu() {
+                if (!menuOpen) return;
+                menuOpen = false;
+                
+                // Show hamburger, hide close icon
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                
+                menu.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+                setTimeout(() => {
+                    backdrop.classList.add('hidden');
+                }, 300);
+            }
+            
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (menuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+            
+            close.addEventListener('click', closeMenu);
+            backdrop.addEventListener('click', closeMenu);
+            
+            links.forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (menuOpen && !menu.contains(e.target) && e.target !== toggle) {
+                    closeMenu();
+                }
+            });
+        });
+    </script>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body class="font-sans overflow-x-hidden">
+    <!-- NAVIGATION SECTION -->
+    <header class="nav-container bg-primary text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Load name from config -->
+            <h1 class="text-xl font-bold text-secondary" id="portfolio-name">Your Name</h1>
+            <nav class="hidden md:flex items-center">
+                <ul class="flex space-x-6 mr-6">
+                    <li><a href="#about" class="hover:text-secondary transition-colors">About</a></li>
+                    <li><a href="#projects" class="hover:text-secondary transition-colors">Projects</a></li>
+                    <li><a href="#skills" class="hover:text-secondary transition-colors">Skills</a></li>
+                    <li><a href="#contact" class="hover:text-secondary transition-colors">Contact</a></li>
+                </ul>
+                <button id="themeToggle" class="bg-secondary text-white p-2 rounded-full focus:outline-none hover:bg-secondary-light transition-colors" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon" id="dark-icon"></i>
+                    <i class="fas fa-sun hidden" id="light-icon"></i>
+                </button>
+            </nav>
+            <button id="mobileMenuToggle" class="md:hidden text-white focus:outline-none hover:text-secondary transition-colors z-50" aria-label="Toggle Mobile Menu">
+                <i class="fas fa-bars text-xl menu-icon-open"></i>
+                <i class="fas fa-times text-xl menu-icon-close hidden"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenuBackdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    <div id="mobileMenu" class="fixed top-0 right-0 w-3/4 h-full bg-primary text-white p-6 z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-xl font-bold text-secondary">Menu</h2>
+            <button id="mobileMenuClose" class="text-white focus:outline-none hover:text-secondary transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <ul class="space-y-4 mb-8">
+            <li><a href="#about" class="block py-2 hover:text-secondary transition-colors mobile-link">About</a></li>
+            <li><a href="#projects" class="block py-2 hover:text-secondary transition-colors mobile-link">Projects</a></li>
+            <li><a href="#skills" class="block py-2 hover:text-secondary transition-colors mobile-link">Skills</a></li>
+            <li><a href="#contact" class="block py-2 hover:text-secondary transition-colors mobile-link">Contact</a></li>
+        </ul>
+        <button id="mobileThemeToggle" class="bg-secondary text-white p-3 rounded-full w-full flex justify-center items-center space-x-2 focus:outline-none hover:bg-secondary-light transition-colors">
+            <i class="fas fa-moon" id="mobile-dark-icon"></i>
+            <i class="fas fa-sun hidden" id="mobile-light-icon"></i>
+            <span>Switch Theme</span>
+        </button>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative bg-gradient-subtle text-white py-32 overflow-hidden mt-16">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute h-40 w-40 rounded-full bg-secondary blur-3xl top-20 left-20"></div>
+            <div class="absolute h-60 w-60 rounded-full bg-primary blur-3xl bottom-20 right-20"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between">
+                <div class="max-w-xl md:w-1/2">
+                    <div class="inline-block px-3 py-1 mb-6 rounded-full glass-effect text-xs font-semibold">
+                        <span id="welcome-text">👋 Welcome to my portfolio</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-bold mb-4 animate__animated animate__fadeInDown">Hello, I'm <span class="text-secondary" id="hero-name">Your Name</span></h1>
+                    <h2 class="text-xl sm:text-2xl mb-4 animate__animated animate__fadeInUp animate__delay-1s" id="hero-title">Software Developer</h2>
+                    <p class="text-lg sm:text-xl mb-8 animate__animated animate__fadeInUp animate__delay-2s" id="hero-tagline">I build things for the web</p>
+                    <div class="flex flex-wrap gap-4 animate__animated animate__fadeInUp animate__delay-3s">
+                        <a href="#contact" class="bg-secondary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary-light transition-colors transform hover:scale-105">Get In Touch</a>
+                        <a href="#projects" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition-colors transform hover:scale-105">View My Work</a>
+                    </div>
+                    <div class="mt-10 flex space-x-4">
+                        <a href="#" id="github-link" target="_blank" rel="noopener noreferrer" class="text-white hover:text-secondary transition-colors" aria-label="Github">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="#" id="linkedin-link" target="_blank" rel="noopener noreferrer" class="text-white hover:text-secondary transition-colors" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in text-2xl"></i>
+                        </a>
+                        <a href="#" id="twitter-link" target="_blank" rel="noopener noreferrer" class="text-white hover:text-secondary transition-colors" aria-label="Twitter">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/3 relative mb-10 md:mb-0 animate__animated animate__fadeIn animate__delay-1s">
+                    <div class="absolute -top-6 -left-6 w-full h-full border-2 border-secondary rounded-full opacity-30"></div>
+                    <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary rounded-full opacity-30"></div>
+                    <img id="profile-image" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Your Profile Picture" 
+                         class="rounded-full shadow-lg w-64 h-64 object-cover mx-auto relative z-10 border-4 border-secondary animate-float">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down-indicator">
+            <a href="#about" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+                <i class="fas fa-chevron-down text-xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Simple separator instead of shape divider -->
+    <div class="section-separator"></div>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 relative reveal" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center mb-16">
+                <h2 class="text-3xl font-bold relative inline-block">
+                    <span class="relative z-10 text-gradient">About Me</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-3 bg-secondary opacity-30 rounded"></span>
+                </h2>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
+                <div class="flex flex-col sm:flex-row gap-8">
+                    <div class="sm:w-1/3">
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mb-6">
+                            <h3 class="font-bold text-lg text-center border-b border-gray-200 dark:border-gray-600 pb-2 mb-3">Experience</h3>
+                            <p class="text-center text-3xl font-bold text-secondary" id="experience-years">5+ Years</p>
+                        </div>
+                        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                            <h3 class="font-bold text-lg text-center border-b border-gray-200 dark:border-gray-600 pb-2 mb-3">Education</h3>
+                            <p class="text-center text-secondary font-semibold" id="education-degree">Computer Science</p>
+                            <p class="text-center text-gray-500 dark:text-gray-400 text-sm" id="education-university">University Name</p>
+                        </div>
+                    </div>
+                    <div class="sm:w-2/3">
+                        <p class="mb-4 text-lg leading-relaxed" id="about-text-1">Hello! I'm a passionate software developer with experience in building web applications. I enjoy creating things that live on the internet, whether that be websites, applications, or anything in between.</p>
+                        <p class="mb-6 text-lg leading-relaxed" id="about-text-2">I'm passionate about crafting clean, maintainable code that solves real-world problems. With a focus on user experience and performance, I aim to create applications that are both functional and beautiful.</p>
+                        <div class="mb-4">
+                            <h3 class="text-lg font-semibold mb-2">Core Technologies:</h3>
+                            <ul class="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 tech-stack" id="core-technologies">
+                                <!-- Core technologies will be dynamically populated -->
+                            </ul>
+                        </div>
+                        <a href="./resume.pdf" id="resume-link" download class="inline-flex items-center px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-light transition-colors">
+                            <i class="fas fa-download mr-2"></i> Download Resume
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple separator instead of shape divider -->
+    <div class="section-separator"></div>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden reveal" data-aos="fade-up" data-aos-duration="1000">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute h-40 w-40 rounded-full bg-secondary blur-3xl top-20 left-1/4"></div>
+            <div class="absolute h-60 w-60 rounded-full bg-primary blur-3xl bottom-20 right-1/4"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col items-center mb-16">
+                <h2 class="text-3xl font-bold relative inline-block mb-4">
+                    <span class="relative z-10 text-gradient">Projects</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-3 bg-secondary opacity-30 rounded"></span>
+                </h2>
+                <p class="text-center max-w-2xl text-gray-600 dark:text-gray-300">Here are some of my recent projects. Each one was a unique challenge that helped me grow as a developer.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 projects-grid" id="projects-container">
+                <!-- Projects will be dynamically populated -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" id="github-projects-link" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 bg-primary dark:bg-gray-800 text-white rounded-lg hover:bg-gray-900 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fab fa-github mr-2"></i> View More Projects on GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple separator instead of shape divider -->
+    <div class="section-separator"></div>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-24 relative reveal" data-aos="fade-up" data-aos-duration="1000">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center mb-16">
+                <h2 class="text-3xl font-bold relative inline-block mb-4">
+                    <span class="relative z-10 text-gradient">Skills</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-3 bg-secondary opacity-30 rounded"></span>
+                </h2>
+                <p class="text-center max-w-2xl text-gray-600 dark:text-gray-300">I'm continuously learning and improving my skills. Here's a snapshot of my current technical toolkit.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <!-- Skill Categories -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 skill-categories" id="skill-categories">
+                    <!-- Skill categories will be dynamically populated -->
+                </div>
+                
+                <!-- Technology logos -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-6 md:p-8 shadow-lg overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-xl font-semibold text-center mb-8">Technologies I Work With</h3>
+                    
+                    <div class="tech-carousel overflow-hidden relative">
+                        <div class="tech-track" id="tech-track">
+                            <!-- Tech items will be dynamically populated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple separator instead of shape divider -->
+    <div class="section-separator"></div>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-gray-50 dark:bg-gray-900 relative reveal" data-aos="fade-up" data-aos-duration="1000">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute h-40 w-40 rounded-full bg-primary blur-3xl top-20 right-1/4"></div>
+            <div class="absolute h-60 w-60 rounded-full bg-secondary blur-3xl bottom-20 left-1/4"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col items-center mb-16">
+                <h2 class="text-3xl font-bold relative inline-block mb-4">
+                    <span class="relative z-10 text-gradient">Contact Me</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-3 bg-secondary opacity-30 rounded"></span>
+                </h2>
+                <p class="text-center max-w-2xl text-gray-600 dark:text-gray-300">I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-col lg:flex-row gap-8 contact-grid">
+                    <!-- Contact Information -->
+                    <div class="lg:w-2/5" data-aos="fade-right" data-aos-delay="100">
+                        <div class="theme-card rounded-xl shadow-lg p-8 h-full">
+                            <h3 class="text-xl font-semibold mb-6">Contact Information</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 rounded-lg bg-secondary bg-opacity-20 flex items-center justify-center mr-4">
+                                        <i class="fas fa-envelope text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Email</h4>
+                                        <a href="mailto:hello@example.com" id="contact-email" class="hover:text-secondary transition-colors">hello@example.com</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 rounded-lg bg-secondary bg-opacity-20 flex items-center justify-center mr-4">
+                                        <i class="fas fa-map-marker-alt text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Location</h4>
+                                        <p id="contact-location">San Francisco, CA</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-10 h-10 rounded-lg bg-secondary bg-opacity-20 flex items-center justify-center mr-4">
+                                        <i class="fas fa-phone-alt text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400">Call Me</h4>
+                                        <p id="contact-phone">+1 (123) 456-7890</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-10">
+                                <h4 class="text-lg font-semibold mb-4">Connect with me</h4>
+                                <div class="flex space-x-4" id="contact-social-icons">
+                                    <!-- Social icons will be dynamically populated -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <!-- CUSTOMIZE: For a working form, add your form endpoint -->
+                    <!-- Options: Formspree, Netlify Forms, or your own backend -->
+                    <div class="lg:w-3/5" data-aos="fade-left" data-aos-delay="200">
+                        <div class="theme-card rounded-xl shadow-lg p-8">
+                            <h3 class="text-xl font-semibold mb-6">Send Me a Message</h3>
+                            
+                            <form id="contact-form" class="space-y-4">
+                                <!-- For Formspree: action="https://formspree.io/f/your-form-id" method="POST" -->
+                                <!-- For Netlify: add attribute netlify -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="form-group">
+                                        <label for="name" class="block text-sm font-medium mb-1">Name</label>
+                                        <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800 dark:text-white" placeholder="Your Name" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                                        <input type="email" id="email" name="email" class="form-input w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800 dark:text-white" placeholder="Your Email" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject" class="block text-sm font-medium mb-1">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="form-input w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800 dark:text-white" placeholder="Subject" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                                    <textarea id="message" name="message" rows="5" class="form-textarea w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent dark:bg-gray-800 dark:text-white" placeholder="Your Message" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="px-6 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:from-primary-dark hover:to-secondary-light transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary w-full">
+                                    <div class="flex items-center justify-center">
+                                        <span>Send Message</span>
+                                        <i class="fas fa-paper-plane ml-2"></i>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <!-- CUSTOMIZE: Your footer information -->
+    <footer class="bg-gray-900 text-white py-10" data-aos="fade-up" data-aos-offset="0" data-aos-once="true" data-aos-anchor-placement="top-bottom">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="text-center md:text-left mb-6 md:mb-0">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <!-- CUSTOMIZE: Your logo -->
+                        <img src="logo.png" alt="Logo" class="h-8 mr-2">
+                        <h3 class="text-xl font-bold">Portfolio</h3>
+                    </div>
+                    <!-- CUSTOMIZE: Your tagline -->
+                    <p class="text-gray-400 mt-2">Crafting digital experiences that make a difference.</p>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-4 mb-4">
+                        <!-- CUSTOMIZE: Your social media links -->
+                        <a href="#" class="social-icon-footer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-icon-footer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon-footer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon-footer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-400 text-sm">&copy; <span id="current-year"></span> - All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center shadow-lg transform transition-transform hover:scale-110 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="./script.js"></script>
+</body>
+</html> 
